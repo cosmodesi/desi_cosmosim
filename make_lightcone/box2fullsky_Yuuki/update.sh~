@@ -5,7 +5,7 @@
 REF=${1-master} # branch or tag; defaults to 'master' if parameter 1 not present
 REMOTE=Ginevra_CF # just a name to identify the remote
 REPO=https://github.com/gfavole/multi2pcf.git # replace this with your repository URL
-FOLDER=clustering/Ginevra_CF/multi2pcf # where to mount the subtree
+FOLDER=clustering_codes/Ginevra_CF/multi2pcf # where to mount the subtree
 
 git remote add $REMOTE --no-tags $REPO
 if [[ -d $FOLDER ]]; then # update the existing subtree
