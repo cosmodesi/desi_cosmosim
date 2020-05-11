@@ -11,4 +11,4 @@
 export OMP_NUM_THREADS=32
 
 ifort -fopenmp xilrsd.f90 -o xilrsd
-jobfork/jobfork_omp jobfork_rsd_list
+jobfork/jobfork_omp jobfork_rsd_list.txt

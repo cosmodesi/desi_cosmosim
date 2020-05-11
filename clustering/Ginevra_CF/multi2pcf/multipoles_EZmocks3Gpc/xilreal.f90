@@ -8,10 +8,12 @@
 ! ./xilrsd < params_real.inp
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 Program  main
   implicit none
   CHARACTER(150), PARAMETER   :: params_inp='params_real/params_real.inp'
   CHARACTER*250  CATALOG,DD,XI2D,XIL 
+  CHARACTER params_real*80
   !--------------------------------------------------------------------------------------------
   real*8 :: Lbox, redshift, omegam, omegal, scale_factor
   real*8, parameter  :: pi=3.14159265,hubble0=100.0, s_min=0.,s_max=200., mu_min=0., mu_max=1.
@@ -43,7 +45,8 @@ Program  main
 
 
   !----------------------- read positions and velocities from galaxy catalog:
-   open(11,file=params_inp)
+   CALL getarg(1,params_real)
+   open(11,file=params_real)
    read (11,'(A)') CATALOG
    read (11,'(A)') DD
    read (11,'(A)') XI2D
@@ -115,7 +118,7 @@ hubbleEV=dble(hubble0*sqrt(omegam*(1.+redshift)**3.+omegal))
 
   !$OMP DO
   DO i = 1, Ngalbin
-     if (mod(i,100000)==0) write(*,*) 'step =', i
+     if (mod(i,1000000)==0) write(*,*) 'step =', i
      DO j = i+1, Ngalbin
         dx = ABS(x(i) - x(j))
         dy = ABS(y(i) - y(j))

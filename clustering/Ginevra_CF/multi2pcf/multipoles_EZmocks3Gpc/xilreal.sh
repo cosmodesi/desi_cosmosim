@@ -11,4 +11,4 @@
 export OMP_NUM_THREADS=32
 
 ifort -fopenmp xilreal.f90 -o xilreal
-jobfork/jobfork_omp jobfork_real_list
+jobfork/jobfork_omp jobfork_real_list.txt

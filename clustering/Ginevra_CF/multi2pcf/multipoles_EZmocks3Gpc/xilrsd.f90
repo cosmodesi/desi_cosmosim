@@ -8,10 +8,12 @@
 ! ./xilrsd < params_rsd.inp
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 Program  main
   implicit none
   CHARACTER(150), PARAMETER   :: params_inp='params_rsd/params_rsd.inp'
   CHARACTER*250  CATALOG,DD,XI2D,XIL 
+  CHARACTER params_rsd*80
   !--------------------------------------------------------------------------------------------
   real*8 :: Lbox, redshift, omegam, omegal, scale_factor
   real*8, parameter  :: pi=3.14159265,hubble0=100.0, s_min=0.,s_max=200., mu_min=0., mu_max=1.
@@ -40,7 +42,8 @@ Program  main
   call system_clock(beginning, rate)
 
   !----------------------- read positions and velocities from galaxy catalog:
-   open(11,file=params_inp)
+   CALL getarg(1,params_rsd)
+   open(11,file=params_rsd)
    read (11,'(A)') CATALOG
    read (11,'(A)') DD
    read (11,'(A)') XI2D
@@ -110,7 +113,7 @@ Program  main
 
   !$OMP DO
   DO i = 1, Ngalbin
-     if (mod(i,100000)==0) write(*,*) 'step =', i
+     if (mod(i,1000000)==0) write(*,*) 'step =', i
      DO j = i+1, Ngalbin
         dx = ABS(x(i) - x(j))
         dy = ABS(y(i) - y(j))
