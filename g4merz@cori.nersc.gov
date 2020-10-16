@@ -15,7 +15,7 @@ N=512
 Nmu = ns.Nmu
 
 path = '/global/project/projectdirs/desi/users/UNIT-BAO-RSD-challenge/Reconstruction/Stage1/'
-initname = '/global/cscratch1/sd/yuyu22/unitic/den0512.bin'
+initname = '/global/cscratch1/sd/yuyu22//unitic/den0512.bin'
 
 t0=time.time()
 
